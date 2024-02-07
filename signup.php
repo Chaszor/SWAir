@@ -10,7 +10,7 @@ if(!$con){
 }
 mysql_select_db("logindb", $con);
 
-$query="INSERT INTO users(Username,Password)VALUES('$Username', '$Password')";
+$query="INSERT INTO users(null,Username,Password) VALUES('$Username', '$Password')";
 if(!mysql_query($query,$con)){
     die('Error in inserting records' .mysql_error);
     }else

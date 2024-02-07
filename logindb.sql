@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 07, 2024 at 06:57 AM
--- Server version: 8.2.0
+-- Generation Time: Feb 07, 2024 at 04:41 PM
+-- Server version: 8.3.0
 -- PHP Version: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -31,17 +31,17 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `AccountNumber` int NOT NULL AUTO_INCREMENT,
   `Username` varchar(25) NOT NULL,
-  `Password` int NOT NULL,
-  PRIMARY KEY (`AccountNumber`),
+  `Password` varchar(25) NOT NULL,
+  PRIMARY KEY (`Username`),
   UNIQUE KEY `AccountNumber` (`AccountNumber`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`AccountNumber`, `Username`, `Password`) VALUES
-(1, 'Test1', 1234);
+(1, 'Test1', '12345');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
