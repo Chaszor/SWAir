@@ -5,30 +5,43 @@
         <meta name="author" content="Curt Bennett">
         <meta name="description" content="">
         <link rel="stylesheet" href="css/style.css">
-        <title>SWAir - Login</title>
-        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+        <title>SW Fast Air - Login</title>
+        <link rel="icon" type="image/x-icon" href="Resources/images/favicon.ico">
     </head>
-    <body>
-        <img src="images/SWAir.png" alt="SWAir">
+    <body>        
+        <style>
+        body {
+          background-image: url('Resources/images/hphero-geo-MBS-bkg-20240227.jpg');
+          background-repeat: no-repeat;
+          background-attachment: local;
+          background-size:contain;
+        }
+        </style>
+        <img src="Resources/images/SWFastAir.png" alt="SWFastAir">
         <div class="navbar">
             <ul>
                 <li><a href="home.html">Home</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="verification.php">Verification</a></li>
+                <li><a href="login.php">Login</a></li>
                 <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="employee_login.php">Employee Login</a></li>
             </ul>
         </div>
-        <h1 class="heading">Sign Up for SW Fast Air</h1>
+        <h1 class="heading"><img src="Resources/icons/HpIcon1_WhyFly_190305.png" width="60">Sign Up for SW Fast Air<img src="Resources/icons/HpIcon1_WhyFly_190305.png" width="60"></h1>
         
-        <div class ="login">
+        <div class ="signup">
             <form action="signup.php" method="post" align="center">
                 <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required><br>
+                <input type="email" id="email" name="email" required><br>
         
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required><br>
 
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required></br>
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required></br>
+
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" required></br>
         
                 <input type="submit" value="Sign Up">
             </form>

@@ -1,8 +1,8 @@
 <?php
-include('login_back.php');
+include('employee_login_back.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start();
+//session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,9 +36,9 @@ session_start();
     <h1 class="heading"><img src="Resources/icons/HpIcon1_WhyFly_190305.png" width="60">Login To SW Fast Air<img src="Resources/icons/HpIcon1_WhyFly_190305.png" width="60"></h1>
     
     <div class="login">
-        <form method="post" align="center">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br>
+        <form method="post" action="employee_login_back.php" align="center">
+            <label for="employeeID">Employee ID:</label>
+            <input type="text" id="employeeID" name="employeeID" required><br>
     
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required><br>
@@ -47,21 +47,6 @@ session_start();
         </form>
     </div>
 
-    <?php
-    // Process form data when the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve data from the form
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-
-        // Now you can use $email and $password for further processing
-        // For example, you might want to validate the input or authenticate the user
-
-        // Assuming login is successful, set session variable and redirect
-        $_SESSION['login_user'] = $email;
-        header('location: profile.php');
-        exit();
-    }
-    ?>
+    <!-- You can remove the processing code from here -->
 </body>
 </html>
