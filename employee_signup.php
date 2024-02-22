@@ -23,7 +23,7 @@
             <li><a href="home.html">Home</a></li>
             <li><a href="verification.php">Verification</a></li>
             <li><a href="login.php">Login</a></li>
-            <li><a href="employee_signup.php">Employee Sign Up</a></li>
+            <li><a href="employee_login.php">Employee Login</a></li>
         </ul>
     </div>
     <h1 class="heading">Employee Sign Up</h1>

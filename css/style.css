@@ -104,7 +104,7 @@ th, td, caption{
     justify-content: center;
   }
 
-  .seat {
+.seat {
     width: 50px;
     height: 50px;
     border: 1px solid #ccc;
@@ -115,13 +115,38 @@ th, td, caption{
     cursor: pointer;
   }
 
-  .occupied {
+.occupied {
     background-color: #ff0000;
     color: #fff;
     cursor: not-allowed;
   }
 
-  .selected {
+.selected {
     background-color: #00ff00;
     color: #fff;
   }
+p.success {
+    background-color: #4CAF50; /* Green background color */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    
+}
+
+p.error {
+    background-color: #f44336; /* Red background color */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+table.profileTable{
+    background-color: #304cb2;
+    color:white;
+    text-align: center;
+    th{
+        background-color: #FFBF27;
+        color:#000000;
+    }
+}

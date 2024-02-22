@@ -20,9 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             // Booking has a valid fast pass
             $message = "Booking with ID $bookingID has a valid fast pass.";
+            $messageClass = "success";
         } else {
             // Booking does not have a valid fast pass
             $message = "Booking with ID $bookingID does not have a valid fast pass.";
+            $messageClass = "error";
         }
     } else {
         // Error executing the query
@@ -80,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     // Display the verification message if available
     if (isset($message)) {
-        echo "<p>$message</p>";
+        echo "<p class='$messageClass'>$message</p>";
     }
     ?>
 </body>

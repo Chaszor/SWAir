@@ -55,7 +55,7 @@ if (!$result) {
       if ($result_bookings->num_rows > 0) {
       // Output data of each row
       echo "<h2>Your Bookings:</h2>";
-      echo "<table border='1'>
+      echo "<table border='1' class='profileTable'>
               <tr>
                   <th>Ticket Number</th>
                   <th>Flight Number</th>
@@ -109,7 +109,7 @@ if (!$result) {
       if ($result_baggage->num_rows > 0) {
         // Output data of each row
         echo "<h2>Your Checked Baggage:</h2>";
-        echo "<table border='1'>
+        echo "<table border='1' class='profileTable'>
                 <tr>
                     <th>BagID</th>
                     <th>Ticket Number</th>
