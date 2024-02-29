@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 22, 2024 at 06:53 AM
+-- Generation Time: Feb 29, 2024 at 07:42 AM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.13
 
@@ -44,7 +44,9 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 --
 
 INSERT INTO `bookings` (`ticketNumber`, `FlightNumber`, `PassengerID`, `SeatNumber`, `FastPassStatus`) VALUES
+(124, 108, 9, 'seat12', 'false'),
 (4023, 108, 2, 'seat22', 'false'),
+(6969, 108, 9, 'seat19', 'false'),
 (7777, 101, 2, 'seat8', 'false'),
 (12345, 101, 2, 'seat1', 'true'),
 (12346, 101, 2, 'seat9', 'false');
@@ -66,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `checkedbags` (
   UNIQUE KEY `BagID` (`BagID`),
   KEY `PassengerID` (`PassengerID`),
   KEY `BookingReferenceNumber` (`ticketNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `checkedbags`
@@ -76,7 +78,8 @@ INSERT INTO `checkedbags` (`BagID`, `ticketNumber`, `PassengerID`, `Weight`, `Ba
 (10, 12345, 2, 50, 'In Process', 'Dont Throw please'),
 (11, 12345, 2, 15, 'In Process', 'Fragile'),
 (12, 12346, 2, 150, 'In Process', ''),
-(13, 12346, 2, 10, 'In Process', 'dont throw');
+(13, 12346, 2, 10, 'In Process', 'dont throw'),
+(14, 6969, 9, 100, 'In Process', 'Testing');
 
 -- --------------------------------------------------------
 
@@ -90,16 +93,17 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `name` varchar(80) NOT NULL,
   `email` varchar(80) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `accessLevel` int NOT NULL DEFAULT '5',
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `employeeID` (`employeeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1991 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1992 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`employeeID`, `name`, `email`, `password`) VALUES
-(1989, 'Curt Bennett', 'chaszor@gmail.com', '$2y$10$M6szJYpqs47./Qox1wKQ8uMQL4pWBBYDhRlIjvy2Swn/1lhzMt/Nq');
+INSERT INTO `employees` (`employeeID`, `name`, `email`, `password`, `accessLevel`) VALUES
+(1989, 'Curt Bennett', 'chaszor@gmail.com', '$2y$10$M6szJYpqs47./Qox1wKQ8uMQL4pWBBYDhRlIjvy2Swn/1lhzMt/Nq', 1);
 
 -- --------------------------------------------------------
 
@@ -149,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `passengers` (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   UNIQUE KEY `PassengerID` (`PassengerID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `passengers`
@@ -157,7 +161,8 @@ CREATE TABLE IF NOT EXISTS `passengers` (
 
 INSERT INTO `passengers` (`PassengerID`, `FirstName`, `LastName`, `Email`, `password`) VALUES
 (1, 'Piper', 'Keim', 'piperskeim@gmail.com', '$2y$10$oQ4DywOgCFIUYMSQKxbEC.JjTz50Et2/OatRbA9/7T5g1lR5w7LR.'),
-(2, 'Curt', 'Bennett', 'chaszor@gmail.com', '$2y$10$YH56UHhR9ZUwQZ5tnLGMreIChfgbjsFHr3d5aPlMqQcNAo94MaIG6');
+(2, 'Curt', 'Bennett', 'chaszor@gmail.com', '$2y$10$YH56UHhR9ZUwQZ5tnLGMreIChfgbjsFHr3d5aPlMqQcNAo94MaIG6'),
+(9, 'Austin', 'Belt', 'austinebelt@gmail.com', '$2y$10$yDoJq90uURJPs.hvbUFqIONCZK07VbXXnork9omKDMEohRu0rWbci');
 
 --
 -- Constraints for dumped tables
