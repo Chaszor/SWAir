@@ -94,6 +94,11 @@ p{
 }
 .search-form{
     text-align: center;
+    color: #FFBF27;
+}
+.upgrade-ticket{
+    text-align: center;
+    color: #FFBF27;
 }
 .baggageForm{
     color: white;
@@ -128,7 +133,7 @@ p{
 }
 .search-results{
     h2{
-        color: white;
+        color: #FFBF27;
     }
     
     position:relative;
@@ -255,7 +260,4 @@ table.profileTable{
         background-color: #FFBF27;
         color:#000000;
     }
-}
-.search-form{
-    color: #FFBF27;
 }

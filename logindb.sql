@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 29, 2024 at 07:42 AM
+-- Generation Time: Mar 04, 2024 at 03:09 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.13
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   UNIQUE KEY `BookingReferenceNumber` (`ticketNumber`),
   KEY `PassengerID` (`PassengerID`),
   KEY `bookings_ibfk_1` (`FlightNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=12347 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=234124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `bookings`
@@ -45,11 +45,14 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 
 INSERT INTO `bookings` (`ticketNumber`, `FlightNumber`, `PassengerID`, `SeatNumber`, `FastPassStatus`) VALUES
 (124, 108, 9, 'seat12', 'false'),
+(234, 101, 2, 'seat28', 'false'),
 (4023, 108, 2, 'seat22', 'false'),
+(5555, 101, 1, 'seat3', 'false'),
 (6969, 108, 9, 'seat19', 'false'),
 (7777, 101, 2, 'seat8', 'false'),
 (12345, 101, 2, 'seat1', 'true'),
-(12346, 101, 2, 'seat9', 'false');
+(12346, 101, 2, 'seat9', 'false'),
+(234123, 101, 2, 'seat8', 'false');
 
 -- --------------------------------------------------------
 
@@ -68,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `checkedbags` (
   UNIQUE KEY `BagID` (`BagID`),
   KEY `PassengerID` (`PassengerID`),
   KEY `BookingReferenceNumber` (`ticketNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `checkedbags`
@@ -79,7 +82,8 @@ INSERT INTO `checkedbags` (`BagID`, `ticketNumber`, `PassengerID`, `Weight`, `Ba
 (11, 12345, 2, 15, 'In Process', 'Fragile'),
 (12, 12346, 2, 150, 'In Process', ''),
 (13, 12346, 2, 10, 'In Process', 'dont throw'),
-(14, 6969, 9, 100, 'In Process', 'Testing');
+(14, 6969, 9, 100, 'In Process', 'Testing'),
+(15, 5555, 1, 4, 'In Process', '');
 
 -- --------------------------------------------------------
 
