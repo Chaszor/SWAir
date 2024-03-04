@@ -10,7 +10,7 @@ body{
     padding: 1rem;
     border-left: 1px solid #333;
     border-right: 1px solid #333;
-    background: #ffffff;
+    background: #072db4;
 }
 
 .heading{
@@ -19,23 +19,6 @@ body{
     background-color: #FFBF27;
     position:relative;
     top: 200px;
-}
-
-.login{
-    border: 1px solid black;
-    background-color: #304cb2;
-    color: #ffffff
-}
-
-.signup{
-    border: 1px solid #000000;
-    background-color: #304cb2;
-    color: #ffffff
-}
-
-.upgrade{
-    background-color: #FFBF27;
-    text-align:center;
 }
 .navbar{
     color: white;
@@ -47,17 +30,45 @@ body{
     top: 200px;
     text-decoration: none;
 }
+.login{
+    border: 1px solid black;
+    background-color: #304cb2;
+    color: #ffffff;
+    position:relative;
+    top: 200px;
+}
+
+.signup{
+    border: 1px solid #000000;
+    background-color: #304cb2;
+    color: #ffffff;
+    position:relative;
+    top: 200px;
+}
+
+.upgrade{
+    background-color: #FFBF27;
+    text-align:center;
+}
+.verification{
+    border: 1px solid #000000;
+    background-color: #304cb2;
+    color: #ffffff;
+    
+    position:relative;
+    top: 200px;
+}
 
 li{
     
     display: inline;
     overflow:visible;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #304cb2;
-   
+    
    
     a{
         color: rgb(255, 191, 39);
@@ -83,6 +94,11 @@ p{
 }
 .search-form{
     text-align: center;
+}
+.baggageForm{
+    color: white;
+    position:relative;
+    top: 200px;
 }
 .home-content1{
     display:flex;
@@ -110,15 +126,35 @@ p{
     position:relative;
     top: 250px;
 }
+.search-results{
+    h2{
+        color: white;
+    }
+    
+    position:relative;
+    top: 200px;
+}
 .empresults {
     display:flex;
     color: #FFFFFF;
     p{
-        background-color: #304cb2;
+        color:#000000;
+        background-color: #FFBF27;
         margin: 10px;
         padding: 10px;
         border-radius: 25px;
     }
+}
+.results{
+    h2{
+        color: white;
+    }
+    position:relative;
+    top: 200px;
+}
+.profile-info{
+    position:relative;
+    top: 200px;
 }
 .empDash{
     color: #FFFFFF;
@@ -139,7 +175,11 @@ p{
 .ticketform input[type="number"] {
   -moz-appearance: textfield;
 }
-
+.ticketform{
+    color: white;
+    position:relative;
+    top: 200px;
+}
 .seatAssignment{
     /*visibility: hidden;*/
     text-align: center;
@@ -150,6 +190,8 @@ p{
     font-size:30px;
     background-color: #304cb2;
     color: #ffffff;
+    position:relative;
+    top: 200px;
 }
 th, td, caption{
     border: 1px solid #333;
@@ -192,7 +234,8 @@ p.success {
     padding: 10px;
     border-radius: 5px;
     text-align: center;
-    
+    position:relative;
+    top: 200px;
 }
 
 p.error {
@@ -201,6 +244,8 @@ p.error {
     padding: 10px;
     border-radius: 5px;
     text-align: center;
+    position:relative;
+    top: 200px;
 }
 table.profileTable{
     background-color: #304cb2;
@@ -210,4 +255,7 @@ table.profileTable{
         background-color: #FFBF27;
         color:#000000;
     }
+}
+.search-form{
+    color: #FFBF27;
 }

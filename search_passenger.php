@@ -64,16 +64,29 @@ $conn->close();
     <title>Search Results</title>
     <link rel="icon" type="image/x-icon" href="Resources/images/favicon.ico">
     <style>
-        body {
-            background-image: url('Resources/images/hphero-geo-MBS-bkg-20240227.jpg');
-            background-repeat: no-repeat;
-            background-attachment: local;
-            background-size: contain;
-        }
-    </style>
+            body {
+              background-image: url('Resources/images/blueScreen.png');
+              background-repeat: no-repeat;
+              background-attachment: scroll;
+              background-size:cover;
+              background-position: center;
+            }
+            </style>
+         <div> <img src="Resources/images/swa_logo_dark.svg" alt="Southwest" style="transform: translate(30px,0px);"> </div>
+
+         <div  class=""
+         style="position: absolute;"><strong
+              class=""
+             style="color: rgb(255, 191, 39); top: 30px; left: 30px; width: 700px; line-height: 1.3em; font-size: 40px;  position: absolute; text-align: left;"><span
+                 class="">Welcome to Southwest 
+                </span><br
+                 class=""><span class=""><i>Fast-Air</i> 
+                </span></strong> 
+                <img src="Resources/images/SWFastAir.png" alt="SWFastAir" style="transform: translate(600px,-10px) scale(0.75);" >
+        </div>
 </head>
 <body>
-    <img src="Resources/images/SWFastAir.png" alt="SWFastAir">
+    
     <div class="navbar">
         <ul>
             <li><a href="employee_profile.php">Back</a></li>

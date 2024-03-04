@@ -52,13 +52,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <body>
   <style>
             body {
-              background-image: url('Resources/images/hphero-geo-MBS-bkg-20240227.jpg');
+              background-image: url('Resources/images/blueScreen.png');
               background-repeat: no-repeat;
-              background-attachment: local;
-              background-size:contain;
+              background-attachment: scroll;
+              background-size:cover;
+              background-position: center;
             }
             </style>
-    <img src="Resources/images/SWFastAir.png" alt="SWFastAir">
+         <div> <img src="Resources/images/swa_logo_dark.svg" alt="Southwest" style="transform: translate(30px,0px);"> </div>
+
+         <div  class=""
+         style="position: absolute;"><strong
+              class=""
+             style="color: rgb(255, 191, 39); top: 30px; left: 30px; width: 700px; line-height: 1.3em; font-size: 40px;  position: absolute; text-align: left;"><span
+                 class="">Welcome to Southwest 
+                </span><br
+                 class=""><span class=""><i>Fast-Air</i> 
+                </span></strong> 
+                <img src="Resources/images/SWFastAir.png" alt="SWFastAir" style="transform: translate(600px,-10px) scale(0.75);" >
+        </div>
     <div class="navbar">
       <ul>
         <li><a href="home.html">Home</a></li>
@@ -72,13 +84,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     <br>
     
-
+<div class="verification">
     <form method="post" align="center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for="booking_id">Enter Booking ID:</label>
         <input type="text" name="booking_id" id="booking_id" required>
         <input type="submit" value="Verify">
     </form>
-
+          </div>
     <?php
     // Display the verification message if available
     if (isset($message)) {
