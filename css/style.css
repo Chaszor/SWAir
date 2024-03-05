@@ -58,7 +58,10 @@ body{
     position:relative;
     top: 200px;
 }
-
+.about-content{
+    position:relative;
+    top: 250px;
+}
 li{
     
     display: inline;
@@ -107,16 +110,27 @@ p{
 }
 .home-content1{
     display:flex;
+    
     img{
         width:35%;
         height: auto;
         padding: 5px;
     }
     p{
+        vertical-align:middle;
+        font-size: 175%;
+        text-align: center;
         width: 60%;
         flex:50%;
         margin: 10px;
         padding:10px;
+    }
+    button{
+        background-color: #FFBF27;
+        font-size: 18px;
+        width: 250px;
+        height: 50px;
+        border-radius: 90%;
     }
     position:relative;
     top: 250px;
