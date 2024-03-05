@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 <div class="verification">
     <form method="post" align="center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <label for="booking_id">Enter Booking ID:</label>
+        <label for="booking_id">Enter Ticket #:</label>
         <input type="text" name="booking_id" id="booking_id" required>
         <input type="submit" value="Verify">
     </form>
