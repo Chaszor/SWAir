@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span><br
                  class=""><span class=""><i>Fast-Air</i> 
                 </span></strong> 
-                <img src="Resources/images/SWFastAir.png" alt="SWFastAir" style="transform: translate(600px,-10px) scale(0.75);" >
+                <img src="Resources/images/SWLOGO2.png" alt="SWFastAir" style="transform: translate(570px,-185px) scale(0.70);" >
         </div>
     <div class="navbar">
       <ul>
