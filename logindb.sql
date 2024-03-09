@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 04, 2024 at 03:09 PM
+-- Generation Time: Mar 06, 2024 at 04:51 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.13
 
@@ -44,15 +44,7 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 --
 
 INSERT INTO `bookings` (`ticketNumber`, `FlightNumber`, `PassengerID`, `SeatNumber`, `FastPassStatus`) VALUES
-(124, 108, 9, 'seat12', 'false'),
-(234, 101, 2, 'seat28', 'false'),
-(4023, 108, 2, 'seat22', 'false'),
-(5555, 101, 1, 'seat3', 'false'),
-(6969, 108, 9, 'seat19', 'false'),
-(7777, 101, 2, 'seat8', 'false'),
-(12345, 101, 2, 'seat1', 'true'),
-(12346, 101, 2, 'seat9', 'false'),
-(234123, 101, 2, 'seat8', 'false');
+(12345, 101, 2, 'seat5', 'true');
 
 -- --------------------------------------------------------
 
@@ -71,19 +63,14 @@ CREATE TABLE IF NOT EXISTS `checkedbags` (
   UNIQUE KEY `BagID` (`BagID`),
   KEY `PassengerID` (`PassengerID`),
   KEY `BookingReferenceNumber` (`ticketNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `checkedbags`
 --
 
 INSERT INTO `checkedbags` (`BagID`, `ticketNumber`, `PassengerID`, `Weight`, `BagStatus`, `SpecialRequests`) VALUES
-(10, 12345, 2, 50, 'In Process', 'Dont Throw please'),
-(11, 12345, 2, 15, 'In Process', 'Fragile'),
-(12, 12346, 2, 150, 'In Process', ''),
-(13, 12346, 2, 10, 'In Process', 'dont throw'),
-(14, 6969, 9, 100, 'In Process', 'Testing'),
-(15, 5555, 1, 4, 'In Process', '');
+(18, 12345, 2, 15, 'In Process', 'Fragile');
 
 -- --------------------------------------------------------
 
@@ -155,18 +142,21 @@ CREATE TABLE IF NOT EXISTS `passengers` (
   `LastName` varchar(80) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `DateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY `PassengerID` (`PassengerID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `passengers`
 --
 
-INSERT INTO `passengers` (`PassengerID`, `FirstName`, `LastName`, `Email`, `password`) VALUES
-(1, 'Piper', 'Keim', 'piperskeim@gmail.com', '$2y$10$oQ4DywOgCFIUYMSQKxbEC.JjTz50Et2/OatRbA9/7T5g1lR5w7LR.'),
-(2, 'Curt', 'Bennett', 'chaszor@gmail.com', '$2y$10$YH56UHhR9ZUwQZ5tnLGMreIChfgbjsFHr3d5aPlMqQcNAo94MaIG6'),
-(9, 'Austin', 'Belt', 'austinebelt@gmail.com', '$2y$10$yDoJq90uURJPs.hvbUFqIONCZK07VbXXnork9omKDMEohRu0rWbci');
+INSERT INTO `passengers` (`PassengerID`, `FirstName`, `LastName`, `Email`, `password`, `DateCreated`) VALUES
+(1, 'Piper', 'Keim', 'piperskeim@gmail.com', '$2y$10$oQ4DywOgCFIUYMSQKxbEC.JjTz50Et2/OatRbA9/7T5g1lR5w7LR.', '2024-03-06 10:50:00'),
+(2, 'Curt', 'Bennett', 'chaszor@gmail.com', '$2y$10$YH56UHhR9ZUwQZ5tnLGMreIChfgbjsFHr3d5aPlMqQcNAo94MaIG6', '2024-03-06 10:50:00'),
+(9, 'Austin', 'Belt', 'austinebelt@gmail.com', '$2y$10$yDoJq90uURJPs.hvbUFqIONCZK07VbXXnork9omKDMEohRu0rWbci', '2024-03-06 10:50:00'),
+(11, 'sdfsd', 'sdfsdf', 'sdfsdf@sfdsdf.com', '$2y$10$MAKdN.I.CtcdJpmWK.KR8OYpceejCT8eu6iNacsE5zQng3OiB4y/.', '2024-03-06 10:50:00'),
+(12, 'test', 'test', 'test@test.com', '$2y$10$RzwfFGuYAq59efve8viCdOYBP1L2J.fwsip.kqSoZu8rCL7f5ZQ8u', '2024-03-06 10:50:00');
 
 --
 -- Constraints for dumped tables

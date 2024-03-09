@@ -71,6 +71,7 @@ include('employee_session.php');
                 <label for="ticketNumber">Enter Ticket Number to Upgrade</label>
                 <input type="text" name="ticketNumber" id="ticketNumber" required>
                 <button type="submit">Upgrade</button>
+                
             </form>
         </div>
         <!-- You can customize the profile information based on your database structure -->
