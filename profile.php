@@ -11,7 +11,7 @@ if (!$result) {
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="author" content="Curt Bennett">
+    <meta name="author" content="Team Bugbasher">
     <meta name="description" content="">
     <link rel="stylesheet" href="css/style.css">
     <title>SW Fast Air - Dashboard</title>
