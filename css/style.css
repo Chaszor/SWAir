@@ -108,6 +108,17 @@ p{
     position:relative;
     top: 200px;
 }
+.flightboard{
+    background-color: #304cb2;
+    color:white;
+    text-align: center;
+    th{
+        background-color: #FFBF27;
+        color:#000000;
+    }
+    position:relative;
+    top: 200px;
+}
 .home-content1{
     display:flex;
     
