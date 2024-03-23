@@ -23,11 +23,13 @@ body{
 .navbar{
     color: white;
     list-style-type: none;
-    text-align:center;
+    text-align: center;
     margin: 0;
     padding: 20;
     position:relative;
     top: 200px;
+    left: -40px;
+    width:max-content;
     text-decoration: none;
 }
 .login{
