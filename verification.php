@@ -66,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="navbar">
       <ul>
         <li><a href="home.html">Home</a></li>
+        <li><a href="flightboard.php">Flights</a></li>
         <li><a href="verification.php">Verification</a></li>
         <li><a href="login.php">Login</a></li>
         <li><a href="signup.html">Sign Up</a></li>

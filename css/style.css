@@ -22,14 +22,17 @@ body{
     position:relative;
     top: 200px;
 }
-.navbar{
+.navbar ul{
+    display: inline-block;
     color: white;
     list-style-type: none;
-    text-align:center;
+    text-align: center;
     margin: 0;
-    padding: 20;
+    padding: 0;
+    align-content: center;
     position:relative;
     top: 200px;
+    width:max-content;
     text-decoration: none;
 }
 .login{
@@ -133,6 +136,17 @@ p{
 }
 .baggageForm{
     color: white;
+    position:relative;
+    top: 200px;
+}
+.flightboard{
+    background-color: #304cb2;
+    color:white;
+    text-align: center;
+    th{
+        background-color: #FFBF27;
+        color:#000000;
+    }
     position:relative;
     top: 200px;
 }
