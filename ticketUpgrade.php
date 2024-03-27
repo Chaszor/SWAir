@@ -23,8 +23,16 @@ if (!$result_flights) {
         <link rel="icon" type="image/x-icon" href="Resources/images/favicon.ico">
     </head>
     <body>
- 
-    <div> <img src="Resources/images/swa_logo_dark.svg" alt="Southwest" style="transform: translate(30px,0px); padding: 10px; background-color: rgb(255, 191, 39);" > </div>
+    <style>
+            body {
+              background-image: url('Resources/images/blueScreen.png');
+              background-repeat: no-repeat;
+              background-attachment: scroll;
+              background-size:cover;
+              background-position: center;
+            }
+            </style>
+         <div> <img src="Resources/images/swa_logo_dark.svg" alt="Southwest" style="transform: translate(30px,0px);"> </div>
 
          <div  class=""
          style="position: absolute;"><strong
