@@ -8,9 +8,11 @@ body{
     max-width: 1000px;
     margin: 0 auto;
     padding: 1rem;
-    border-left: 1px solid #333;
-    border-right: 1px solid #333;
-    background: #072db4;
+    background-image: url('../Resources/images/blueScreen.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 1000px;
+    background-position: center;
 }
 
 .heading{
@@ -35,7 +37,7 @@ body{
 }
 .login{
     border: 1px solid black;
-    background-color: #304cb2;
+    background-color: #FFBF27;
     color: #ffffff;
     position:relative;
     top: 200px;
@@ -62,6 +64,29 @@ body{
     top: 200px;
 }
 .about-content{
+    display:flex;
+    
+    img{
+        width:35%;
+        height: auto;
+        padding: 5px;
+    }
+    p{
+        vertical-align:middle;
+        font-size: 100%;
+        text-align: center;
+        width: 60%;
+        flex:50%;
+        margin: 10px;
+        padding:10px;
+    }
+    button{
+        background-color: #FFBF27;
+        font-size: 18px;
+        width: 200px;
+        height: 50px;
+        
+    }
     position:relative;
     top: 250px;
 }
@@ -97,7 +122,10 @@ p{
     flex-wrap: wrap;
     background-color: #304cb2;
     color: #ffffff
+    
 }
+
+
 .search-form{
     text-align: center;
     color: #FFBF27;
@@ -142,9 +170,9 @@ p{
     button{
         background-color: #FFBF27;
         font-size: 18px;
-        width: 250px;
+        width: 200px;
         height: 50px;
-        border-radius: 90%;
+        
     }
     position:relative;
     top: 250px;
