@@ -11,7 +11,7 @@ body{
     background-image: url('../Resources/images/blueScreen.png');
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-size: 1000px;
+    background-size: 75%;
     background-position: center;
 }
 
@@ -88,11 +88,13 @@ body{
         padding:10px;
     }
     button{
+        display: flex;
         background-color: #FFBF27;
         font-size: 18px;
         width: 200px;
         height: 50px;
-        
+        justify-content: center;
+        align-items: center;
     }
     position:relative;
     top: 250px;
@@ -126,10 +128,11 @@ p{
     flex-wrap: wrap;
 }
 .p2{
+    display: flex;
     flex-wrap: wrap;
     background-color: #304cb2;
-    color: #ffffff
-    
+    color: #ffffff;
+    align-items: center;
 }
 
 
