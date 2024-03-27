@@ -48,7 +48,7 @@ try {
     </style>
 
     <div>
-        <img src="Resources/images/swa_logo_dark.svg" alt="Southwest" style="transform: translate(30px,0px);">
+        <img src="Resources/images/swa_logo_dark.svg" alt="Southwest" style="transform: translate(30px,0px); padding: 10px; background-color: rgb(255, 191, 39);">
     </div>
 
     <div class="" style="position: absolute;">
