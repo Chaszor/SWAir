@@ -5,6 +5,14 @@ include('session.php');
 
 // Assuming you have a database connection
 
+// Clear records from transaction table
+$Sql_clear_trans = "DELETE FROM transactions";
+$result_clear_trans = mysqli_query($connection, $Sql_clear_trans);
+
+if (!$result_clear_trans) {
+    die("Error clearing transactions table: " . mysqli_error($connection));
+}
+
 // Clear records from checkedbags table
 $sql_clear_checkedbags = "DELETE FROM checkedbags";
 $result_clear_checkedbags = mysqli_query($connection, $sql_clear_checkedbags);

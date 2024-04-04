@@ -56,7 +56,9 @@ if (!$result) {
       $stmt_booking->close();
 
       // Check if there are rows returned
+      
       if ($result_bookings->num_rows > 0) {
+      echo '<a href="checkout.php" class="checkoutButton"><button>Click here to Purchase your pass</button></a>';
       // Output data of each row
       echo "<div class='results'>";
       echo "<h2>Your Bookings:</h2>";

@@ -90,9 +90,11 @@ if (!$result_flights) {
                         <?php
                         foreach ($total_seats as $seat) {
                             $isOccupied = in_array($seat, $booked_seats) ? 'occupied' : '';
-                            echo "<div class='seat $isOccupied' id='seat$seat'>$seat</div>";
+                            $seatColorClass = $isOccupied ? 'occupied' : '';
+                            echo "<div class='seat $seatColorClass' id='seat$seat'>$seat</div>";
                         }
                         ?>
+                    </div>
                 </div>
                 <input type="submit" value="Continue">
             </form>
@@ -133,4 +135,3 @@ if (!$result_flights) {
         </script>
     </body>
 </html>
-    

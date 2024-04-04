@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert data into the database
-    $sql = "INSERT INTO bookings (ticketNumber, flightNumber, seatNumber, passengerID) VALUES ('$ticketNumber', '$flightNumber', '$seatNumber', '$passengerID')";
+    $sql = "INSERT INTO bookings (ticketNumber, flightNumber, seatNumber, passengerID, FastPassStatus) VALUES ('$ticketNumber', '$flightNumber', '$seatNumber', '$passengerID', 'False')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Ticket information successfully stored in the database.";
