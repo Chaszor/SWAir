@@ -62,30 +62,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>SW Fast Air - Home</title>
     <link rel="icon" type="image/x-icon" href="Resources/images/favicon.ico">
     <script>
-        function validateForm() {
+    function validateForm() {
         var checkboxes = document.querySelectorAll('input[name="booking[]"]:checked');
         if (checkboxes.length === 0) {
             alert("Please select at least one booking.");
             return false; // Prevent form submission
         }
         return true; // Allow form submission if at least one booking is selected
-        }
-        function calculateTotalPrice() {
-            var checkboxes = document.querySelectorAll('input[name="booking[]"]:checked');
-            var totalPriceElement = document.getElementById('totalPrice');
-            var totalPrice = checkboxes.length * 100.00;
-            totalPriceElement.innerText = '$' + totalPrice.toFixed(2);
-        }
+    }
 
-        window.onload = function() {
-            var checkboxes = document.querySelectorAll('input[name="booking[]"]');
-            checkboxes.forEach(function(checkbox) {
-                checkbox.addEventListener('change', calculateTotalPrice);
-            });
+    function calculateTotalPrice() {
+        var checkboxes = document.querySelectorAll('input[name="booking[]"]:checked');
+        var totalPriceElement = document.getElementById('totalPrice');
+        var totalPrice = checkboxes.length * 100.00;
+        totalPriceElement.innerText = '$' + totalPrice.toFixed(2);
 
-            calculateTotalPrice();
-        };
-    </script>
+        // Show/hide upgrade button based on checkbox selection
+        //var upgradeButton = document.getElementById('upgradeButton');
+        //upgradeButton.style.display = checkboxes.length >= 0 ? 'block' : 'none';
+    }
+
+    window.onload = function() {
+        var checkboxes = document.querySelectorAll('input[name="booking[]"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', calculateTotalPrice);
+        });
+
+        calculateTotalPrice(); // Call once on load to initialize
+    };
+</script>
+
 </head>
 <body>
 <div>
@@ -136,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     Booking ID: <?php echo $row['ticketNumber']; ?>, Passenger: <?php echo $passengerRow['FirstName'] . ' ' . $passengerRow['LastName']; ?>
                 </label><br>
             <?php endwhile; ?>
+            <button id="upgradeButton" onclick="location.href='ticketUpgrade.php';">Not seeing your Ticket?</button>
         </div>
         <hr>
         
