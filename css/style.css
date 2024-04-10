@@ -35,7 +35,7 @@ body{
     width:max-content;
     text-decoration: none;
 }
-.seat.occupied {
+.seat .occupied {
     background-color: red;
     color: white;
 }

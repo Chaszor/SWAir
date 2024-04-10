@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 06, 2024 at 04:51 PM
+-- Generation Time: Apr 10, 2024 at 03:29 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.13
 
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `logindb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `available_seats`
+--
+
+DROP TABLE IF EXISTS `available_seats`;
+CREATE TABLE IF NOT EXISTS `available_seats` (
+  `SeatID` int NOT NULL AUTO_INCREMENT,
+  `FlightNumber` int NOT NULL,
+  `SeatNumber` varchar(10) NOT NULL,
+  `IsReserved` tinyint(1) NOT NULL DEFAULT '0',
+  `PassengerID` int DEFAULT NULL,
+  PRIMARY KEY (`SeatID`),
+  UNIQUE KEY `UniqueSeat` (`FlightNumber`,`SeatNumber`),
+  KEY `fk_available_seats_passenger_id` (`PassengerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `available_seats`
+--
+
+INSERT INTO `available_seats` (`SeatID`, `FlightNumber`, `SeatNumber`, `IsReserved`, `PassengerID`) VALUES
+(1, 101, 'seat1', 1, 2),
+(2, 101, 'seat2', 0, NULL),
+(3, 101, 'seat3', 0, NULL),
+(4, 102, 'seat4', 0, NULL),
+(5, 102, 'seat5', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -44,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 --
 
 INSERT INTO `bookings` (`ticketNumber`, `FlightNumber`, `PassengerID`, `SeatNumber`, `FastPassStatus`) VALUES
-(12345, 101, 2, 'seat5', 'true');
+(234, 105, 2, 'seat13', 'False');
 
 -- --------------------------------------------------------
 
@@ -63,14 +92,14 @@ CREATE TABLE IF NOT EXISTS `checkedbags` (
   UNIQUE KEY `BagID` (`BagID`),
   KEY `PassengerID` (`PassengerID`),
   KEY `BookingReferenceNumber` (`ticketNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `checkedbags`
 --
 
 INSERT INTO `checkedbags` (`BagID`, `ticketNumber`, `PassengerID`, `Weight`, `BagStatus`, `SpecialRequests`) VALUES
-(18, 12345, 2, 15, 'In Process', 'Fragile');
+(23, 234, 2, 15, 'In Process', 'fragile');
 
 -- --------------------------------------------------------
 
@@ -110,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `flights` (
   `DepartureDateTime` datetime NOT NULL,
   `ArrivalDateTime` datetime NOT NULL,
   `FlightStatus` varchar(20) NOT NULL,
+  `MaxPassengers` int NOT NULL,
   UNIQUE KEY `FlightNumber` (`FlightNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -117,17 +147,17 @@ CREATE TABLE IF NOT EXISTS `flights` (
 -- Dumping data for table `flights`
 --
 
-INSERT INTO `flights` (`FlightNumber`, `DepartureAirport`, `ArrivalAirport`, `DepartureDateTime`, `ArrivalDateTime`, `FlightStatus`) VALUES
-(101, 'JFK', 'LAX', '2024-02-10 08:00:00', '2024-02-10 11:00:00', 'Scheduled'),
-(102, 'LAX', 'ORD', '2024-02-11 12:00:00', '2024-02-11 15:30:00', 'Delayed'),
-(103, 'DFW', 'MIA', '2024-02-12 14:30:00', '2024-02-12 17:00:00', 'On Time'),
-(104, 'ATL', 'SFO', '2024-02-13 16:45:00', '2024-02-13 20:15:00', 'Scheduled'),
-(105, 'SFO', 'SEA', '2024-02-14 18:30:00', '2024-02-14 20:45:00', 'On Time'),
-(106, 'ORD', 'DEN', '2024-02-15 22:00:00', '2024-02-16 01:30:00', 'Delayed'),
-(107, 'MIA', 'LGA', '2024-02-16 04:00:00', '2024-02-16 06:30:00', 'Scheduled'),
-(108, 'SEA', 'PHX', '2024-02-17 08:45:00', '2024-02-17 10:30:00', 'On Time'),
-(109, 'PHX', 'ORD', '2024-02-18 12:15:00', '2024-02-18 15:45:00', 'Scheduled'),
-(110, 'LGA', 'DFW', '2024-02-19 18:00:00', '2024-02-19 21:30:00', 'On Time');
+INSERT INTO `flights` (`FlightNumber`, `DepartureAirport`, `ArrivalAirport`, `DepartureDateTime`, `ArrivalDateTime`, `FlightStatus`, `MaxPassengers`) VALUES
+(101, 'JFK', 'LAX', '2024-04-10 08:00:00', '2024-04-10 11:00:00', 'Scheduled', 30),
+(102, 'LAX', 'ORD', '2024-04-11 12:00:00', '2024-04-11 15:30:00', 'Delayed', 30),
+(103, 'DFW', 'MIA', '2024-04-12 14:30:00', '2024-04-12 17:00:00', 'On Time', 30),
+(104, 'ATL', 'SFO', '2024-04-13 16:45:00', '2024-04-13 20:15:00', 'Scheduled', 30),
+(105, 'SFO', 'SEA', '2024-04-14 18:30:00', '2024-04-14 20:45:00', 'On Time', 30),
+(106, 'ORD', 'DEN', '2024-04-15 22:00:00', '2024-04-16 01:30:00', 'Delayed', 30),
+(107, 'MIA', 'LGA', '2024-04-16 04:00:00', '2024-04-16 06:30:00', 'Scheduled', 30),
+(108, 'SEA', 'PHX', '2024-04-17 08:45:00', '2024-04-17 10:30:00', 'On Time', 30),
+(109, 'PHX', 'ORD', '2024-04-18 12:15:00', '2024-04-18 15:45:00', 'Scheduled', 30),
+(110, 'LGA', 'DFW', '2024-04-19 18:00:00', '2024-04-19 21:30:00', 'On Time', 30);
 
 -- --------------------------------------------------------
 
@@ -145,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `passengers` (
   `DateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY `PassengerID` (`PassengerID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `passengers`
@@ -156,11 +186,37 @@ INSERT INTO `passengers` (`PassengerID`, `FirstName`, `LastName`, `Email`, `pass
 (2, 'Curt', 'Bennett', 'chaszor@gmail.com', '$2y$10$YH56UHhR9ZUwQZ5tnLGMreIChfgbjsFHr3d5aPlMqQcNAo94MaIG6', '2024-03-06 10:50:00'),
 (9, 'Austin', 'Belt', 'austinebelt@gmail.com', '$2y$10$yDoJq90uURJPs.hvbUFqIONCZK07VbXXnork9omKDMEohRu0rWbci', '2024-03-06 10:50:00'),
 (11, 'sdfsd', 'sdfsdf', 'sdfsdf@sfdsdf.com', '$2y$10$MAKdN.I.CtcdJpmWK.KR8OYpceejCT8eu6iNacsE5zQng3OiB4y/.', '2024-03-06 10:50:00'),
-(12, 'test', 'test', 'test@test.com', '$2y$10$RzwfFGuYAq59efve8viCdOYBP1L2J.fwsip.kqSoZu8rCL7f5ZQ8u', '2024-03-06 10:50:00');
+(12, 'test', 'test', 'test@test.com', '$2y$10$RzwfFGuYAq59efve8viCdOYBP1L2J.fwsip.kqSoZu8rCL7f5ZQ8u', '2024-03-06 10:50:00'),
+(15, 'bluh', 'bluh', 'test1@test.com', '$2y$10$ZXQ6Te/uWJNmoSKd2PLuyu6fMMhGO8u5di7Tz0Y6L9sMaL91NVL4e', '2024-04-09 10:14:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+DROP TABLE IF EXISTS `transactions`;
+CREATE TABLE IF NOT EXISTS `transactions` (
+  `TransactionID` int NOT NULL AUTO_INCREMENT,
+  `TransactionType` varchar(50) NOT NULL,
+  `Amount` decimal(10,2) NOT NULL,
+  `TransactionDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Description` varchar(255) DEFAULT NULL,
+  `BookingReferenceNumber` int DEFAULT NULL,
+  PRIMARY KEY (`TransactionID`),
+  KEY `transactions_ibfk_1` (`BookingReferenceNumber`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `available_seats`
+--
+ALTER TABLE `available_seats`
+  ADD CONSTRAINT `available_seats_ibfk_1` FOREIGN KEY (`FlightNumber`) REFERENCES `flights` (`FlightNumber`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_available_seats_passenger_id` FOREIGN KEY (`PassengerID`) REFERENCES `passengers` (`PassengerID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `bookings`
@@ -175,6 +231,12 @@ ALTER TABLE `bookings`
 ALTER TABLE `checkedbags`
   ADD CONSTRAINT `checkedbags_ibfk_1` FOREIGN KEY (`PassengerID`) REFERENCES `passengers` (`PassengerID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `checkedbags_ibfk_2` FOREIGN KEY (`ticketNumber`) REFERENCES `bookings` (`ticketNumber`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`BookingReferenceNumber`) REFERENCES `bookings` (`ticketNumber`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
