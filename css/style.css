@@ -35,9 +35,23 @@ body{
     width:max-content;
     text-decoration: none;
 }
-.seat .occupied {
+.seat {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    margin: 2px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+/* Add this style for booked seats */
+.booked {
     background-color: red;
     color: white;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 .login{
     border: 1px solid black;
@@ -85,7 +99,8 @@ body{
 .upgrade{
     background-color: #FFBF27;
     text-align:center;
-    
+    position: relative;
+    top: 200px;
 }
 .verification{
     border: 1px solid #000000;
@@ -224,12 +239,13 @@ p{
     top: 250px;
 }
 .search-results{
+    position:relative;
+    top: 200px;
     h2{
         color: #FFBF27;
     }
     
-    position:relative;
-    top: 200px;
+    
 }
 .empresults {
     display:flex;
@@ -243,11 +259,12 @@ p{
     }
 }
 .results{
+    position:relative;
+    top: 200px;
     h2{
         color: white;
     }
-    position:relative;
-    top: 200px;
+    
 }
 .profile-info{
     position:relative;

@@ -11,6 +11,26 @@ $result_flights = mysqli_query($connection, $sql_flights);
 if (!$result_flights) {
     die("Error executing flights query: " . mysqli_error($connection));
 }
+
+// Fetch booked seats for the selected flight from the database
+if (isset($_POST['flightNumber']) && !empty($_POST['flightNumber'])) {
+    $selected_flight_number = $_POST['flightNumber'];
+    $sql_booked_seats = "SELECT SeatNumber FROM bookings WHERE FlightNumber = '$selected_flight_number'";
+    $result_booked_seats = mysqli_query($connection, $sql_booked_seats);
+
+    // Check for query execution success
+    if (!$result_booked_seats) {
+        die("Error executing booked seats query: " . mysqli_error($connection));
+    }
+
+    // Extract booked seats from the result set
+    $booked_seats = [];
+    while ($row_booked_seats = mysqli_fetch_assoc($result_booked_seats)) {
+        $booked_seats[] = $row_booked_seats['SeatNumber'];
+    }
+} else {
+    $booked_seats = [];
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +73,7 @@ if (!$result_flights) {
         <label for="flightNumber">Select a Flight:</label>
         <select name="flightNumber" id="flightNumber">
             <?php
+            echo "<option value=''>Select a Flight</option>";
             while ($row_flight = mysqli_fetch_assoc($result_flights)) {
                 echo "<option value='{$row_flight['FlightNumber']}'>
                         {$row_flight['FlightNumber']} - {$row_flight['DepartureAirport']} to {$row_flight['ArrivalAirport']}
@@ -64,42 +85,46 @@ if (!$result_flights) {
         <input type="number" id="ticketNumber" name="ticketNumber" required><br>
         <input type="hidden" id="passengerID" name="passengerID" value="<?php echo $passengerID; ?>">
         <input type="hidden" id="seatNumber" name="seatNumber">
-
         <?php
-        // Fetch the selected flight number from the form submission
-        $selected_flight_number = $_POST['flightNumber'] ?? '';
+        // Check if the form has been submitted
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Fetch the selected flight number from the form submission
+            $selected_flight_number = $_POST['flightNumber'] ?? '';
 
-        // Fetch booked seats for the selected flight from the database
-        $sql_booked_seats = "SELECT bs.SeatNumber 
-                             FROM bookings AS b
-                             INNER JOIN available_seats AS bs ON b.SeatNumber = bs.SeatNumber
-                             WHERE b.FlightNumber = '{$selected_flight_number}'";
-        $result_booked_seats = mysqli_query($connection, $sql_booked_seats);
+            // Fetch booked seats for the selected flight from the database
+            $sql_booked_seats = "SELECT SeatNumber FROM bookings WHERE FlightNumber = '$selected_flight_number'";
+            $result_booked_seats = mysqli_query($connection, $sql_booked_seats);
 
-        // Check for query execution success
-        if (!$result_booked_seats) {
-            die("Error executing booked seats query: " . mysqli_error($connection));
+            // Check for query execution success
+            if (!$result_booked_seats) {
+                die("Error executing booked seats query: " . mysqli_error($connection));
+            }
+
+            // Extract booked seats from the result set
+            $booked_seats = array();
+            while ($row_booked_seats = mysqli_fetch_assoc($result_booked_seats)) {
+                $booked_seats[] = $row_booked_seats['SeatNumber'];
+            }
+        } else {
+            // If the form has not been submitted, initialize $booked_seats as an empty array
+            $booked_seats = array();
         }
-
-        // Extract booked seats from the result set
-        $booked_seats = array();
-        while ($row_booked_seats = mysqli_fetch_assoc($result_booked_seats)) {
-            $booked_seats[] = $row_booked_seats['SeatNumber'];
-        }
-
-        // Generate an array of available seats (you may need to customize this based on your total number of seats)
-        $total_seats = range(1, 30);
-        $available_seats = array_diff($total_seats, $booked_seats);
+        
         ?>
+
         <div class="seatAssignment">
             <p class="p2">Select your seat assignment:</p>
+            
             <div class="airplane">
-                <?php
-                foreach ($available_seats as $seat) {
-                    echo "<div class='seat' id='seat$seat'>$seat</div>";
-                }
-                ?>
-            </div>
+    <?php
+    // Generate an array of available seats (you may need to customize this based on your total number of seats)
+    $total_seats = range(1, 30);
+    foreach ($total_seats as $seat) {
+        $seatClass = in_array($seat, $booked_seats) ? 'seat booked' : 'seat';
+        echo "<div class='$seatClass' data-seat-number='seat$seat' id='seat$seat'>$seat</div>";
+    }
+    ?>
+</div>
         </div>
         <input type="submit" value="Continue">
     </form>
@@ -115,6 +140,7 @@ mysqli_close($connection);
         const seats = document.querySelectorAll('.seat');
         const seatNumberInput = document.getElementById('seatNumber');
         const form = document.querySelector('form');
+        const fNumber = document.getElementById('flightNumber');
 
         seats.forEach(seat => {
             seat.addEventListener('click', function () {
@@ -127,8 +153,53 @@ mysqli_close($connection);
                 seatNumberInput.value = seat.classList.contains('selected') ? seat.id : '';
             });
         });
+        document.getElementById('flightNumber').addEventListener('change', function() {
+    // Get the current flight number from the input field
+    var flightNumber = this.value;
+
+    // Clear the 'booked' class from all seats first
+    document.querySelectorAll('.airplane .seat').forEach(function(seat) {
+        seat.classList.remove('selected');
+        seat.classList.remove('booked');
+        seat.onclick = null; // Remove any previous click handlers
+    });
+
+    // Only proceed if flightNumber is not empty
+    if (flightNumber) {
+        // Create a new AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'fetchSeats.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            // Check if the request was successful
+            if (this.status == 200) {
+                // Parse the JSON response containing the seat numbers
+                var seats = JSON.parse(this.responseText);
+
+                // Apply the 'booked' class to each returned seat and disable clicking
+                seats.forEach(function(seat) {
+                    var seatElement = document.querySelector('.airplane .seat[data-seat-number="' + seat + '"]');
+                    if (seatElement) {
+                        seatElement.classList.add('booked');
+                        seatElement.onclick = function(event) {
+                            event.preventDefault(); // Prevent interaction with this element
+                        };
+                    }
+                });
+            }
+        };
+        // Send the flight number to the server
+        xhr.send('flightNumber=' + encodeURIComponent(flightNumber));
+    }
+});
+
+
 
         form.addEventListener('submit', function (event) {
+            if (!fNumber){
+                alert('Please select a flight number');
+                event.preventDefault(); // Prevent the form from submitting
+            }
             if (!seatNumberInput.value) {
                 alert('Please select a seat before continuing.');
                 event.preventDefault(); // Prevent the form from submitting

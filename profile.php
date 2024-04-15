@@ -40,6 +40,10 @@ if (!$result) {
     <p class="dashboard">
       Welcome, <b><?php echo $first_name; ?></b><br>
     </p>
+    <form class="upgrade" action="ticketUpgrade.php">
+      <label><h3> To upgrade to Fast Air, we need<br> information regarding your ticket.</h3></label>
+      <input type="submit" value="Click here to get started!" />
+    </form>
     <?php
       // Fetch booking information from the database
       $sql_booking = "SELECT * FROM bookings WHERE PassengerID = ?";
@@ -81,6 +85,7 @@ if (!$result) {
       echo "</table>";
       } else {
         // No bookings found
+        echo "<div class='results'>";
         echo "<p>No bookings found.</p>";
       }
 
@@ -145,10 +150,7 @@ if (!$result) {
       <input type='submit' value='Click Here to Clear All Information'>
     </form>
     <br>
-    <form class="upgrade" action="ticketUpgrade.php">
-      <label><h3> To upgrade to Fast Air, we need<br> information regarding your ticket.</h3></label>
-      <input type="submit" value="Click here to get started!" />
-    </form>
+    
     <br>
   </body>
 </html>
