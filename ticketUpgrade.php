@@ -128,6 +128,7 @@ if (isset($_POST['flightNumber']) && !empty($_POST['flightNumber'])) {
         </div>
         <input type="submit" value="Continue">
     </form>
+    <br>
 </div>
 
 <?php
