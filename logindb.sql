@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 10, 2024 at 03:29 PM
+-- Generation Time: Apr 15, 2024 at 04:04 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.13
 
@@ -66,14 +66,15 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   UNIQUE KEY `BookingReferenceNumber` (`ticketNumber`),
   KEY `PassengerID` (`PassengerID`),
   KEY `bookings_ibfk_1` (`FlightNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=234124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=123456790 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `bookings`
 --
 
 INSERT INTO `bookings` (`ticketNumber`, `FlightNumber`, `PassengerID`, `SeatNumber`, `FastPassStatus`) VALUES
-(234, 105, 2, 'seat13', 'False');
+(10101, 101, 2, 'seat1', 'False'),
+(10113, 101, 2, 'seat13', 'False');
 
 -- --------------------------------------------------------
 
@@ -92,14 +93,7 @@ CREATE TABLE IF NOT EXISTS `checkedbags` (
   UNIQUE KEY `BagID` (`BagID`),
   KEY `PassengerID` (`PassengerID`),
   KEY `BookingReferenceNumber` (`ticketNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `checkedbags`
---
-
-INSERT INTO `checkedbags` (`BagID`, `ticketNumber`, `PassengerID`, `Weight`, `BagStatus`, `SpecialRequests`) VALUES
-(23, 234, 2, 15, 'In Process', 'fragile');
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -175,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `passengers` (
   `DateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY `PassengerID` (`PassengerID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `passengers`
@@ -187,7 +181,8 @@ INSERT INTO `passengers` (`PassengerID`, `FirstName`, `LastName`, `Email`, `pass
 (9, 'Austin', 'Belt', 'austinebelt@gmail.com', '$2y$10$yDoJq90uURJPs.hvbUFqIONCZK07VbXXnork9omKDMEohRu0rWbci', '2024-03-06 10:50:00'),
 (11, 'sdfsd', 'sdfsdf', 'sdfsdf@sfdsdf.com', '$2y$10$MAKdN.I.CtcdJpmWK.KR8OYpceejCT8eu6iNacsE5zQng3OiB4y/.', '2024-03-06 10:50:00'),
 (12, 'test', 'test', 'test@test.com', '$2y$10$RzwfFGuYAq59efve8viCdOYBP1L2J.fwsip.kqSoZu8rCL7f5ZQ8u', '2024-03-06 10:50:00'),
-(15, 'bluh', 'bluh', 'test1@test.com', '$2y$10$ZXQ6Te/uWJNmoSKd2PLuyu6fMMhGO8u5di7Tz0Y6L9sMaL91NVL4e', '2024-04-09 10:14:24');
+(15, 'bluh', 'bluh', 'test1@test.com', '$2y$10$ZXQ6Te/uWJNmoSKd2PLuyu6fMMhGO8u5di7Tz0Y6L9sMaL91NVL4e', '2024-04-09 10:14:24'),
+(16, 'Test', 'Ing', 'test@gmail.com', '$2y$10$/F6CdLkaqzAdmn.V1Og9P.eHVA5fCtPw4zm/bCQddaHGv42EZBC0q', '2024-04-15 11:00:40');
 
 -- --------------------------------------------------------
 
@@ -205,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `BookingReferenceNumber` int DEFAULT NULL,
   PRIMARY KEY (`TransactionID`),
   KEY `transactions_ibfk_1` (`BookingReferenceNumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Constraints for dumped tables
