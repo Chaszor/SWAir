@@ -142,7 +142,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     Booking ID: <?php echo $row['ticketNumber']; ?>, Passenger: <?php echo $passengerRow['FirstName'] . ' ' . $passengerRow['LastName']; ?>
                 </label><br>
             <?php endwhile; ?>
-            <button id="upgradeButton" onclick="location.href='ticketUpgrade.php';">Not seeing your Ticket?</button>
+            <div class="centered-button">
+                <button id="upgradeButton" onclick="location.href='ticketUpgrade.php';">Not seeing your Ticket?</button>
+            </div>
         </div>
         <hr>
         
@@ -164,7 +166,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="cvv">CVV:</label>
             <input type="text" id="cvv" name="cvv" required><br>
         </p>
-        <input type="submit" value="Pay Now">
+        <div class="centered-button">
+            <input type="submit" value="Pay Now">
+        </div>
     </form>
 </div>
 </body>

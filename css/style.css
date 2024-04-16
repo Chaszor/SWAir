@@ -95,6 +95,12 @@ body{
     margin: auto;
     width: 50%;
 }
+.centered-button {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ensures the flexbox container takes full width */
+    margin-bottom: 20px; /* Provides spacing from elements below if necessary */
+}
 
 .upgrade{
     background-color: #FFBF27;
