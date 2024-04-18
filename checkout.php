@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (validateCreditCard($cardNumber)) {
         if(isset($_POST['booking']) && is_array($_POST['booking'])) {
             $totalChecked = count($_POST['booking']);
-            $totalAmount = $totalChecked * 100.00;
+            $totalAmount = 100.00;
             
             foreach($_POST['booking'] as $booking) {
                 $sql = "UPDATE bookings SET FastPassStatus = 'True' WHERE ticketNumber = '$booking'";
@@ -74,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     function calculateTotalPrice() {
         var checkboxes = document.querySelectorAll('input[name="booking[]"]:checked');
         var totalPriceElement = document.getElementById('totalPrice');
-        var totalPrice = checkboxes.length * 100.00;
-        totalPriceElement.innerText = '$' + totalPrice.toFixed(2);
+        var totalPrice =  100.00;
+        totalPriceElement.innerText = '$' + (checkboxes.length * totalPrice).toFixed(2);
 
         // Show/hide upgrade button based on checkbox selection
         //var upgradeButton = document.getElementById('upgradeButton');
