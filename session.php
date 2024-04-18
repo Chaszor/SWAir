@@ -52,7 +52,6 @@ if ($result->num_rows > 0) {
         $FlightNumber = $row_booking['FlightNumber'];
         $SeatNumber = $row_booking['SeatNumber'];
         $FastPassStatus = $row_booking['FastPassStatus'];
-        //var_dump($row_booking);
     }
 } else {
     // No bookings found
@@ -60,11 +59,9 @@ if ($result->num_rows > 0) {
     $FlightNumber = "";
     $SeatNumber = "";
     $FastPassStatus = "";
-    //var_dump("no bookings found");
 }
 if ($result === false) {
     die("Error fetching booking results: " . $stmt_booking->error);
 }
 $stmt_booking->close();
-//mysqli_close($connection);
 ?>
