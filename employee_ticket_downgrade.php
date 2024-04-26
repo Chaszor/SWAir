@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $ticketNumber = mysqli_real_escape_string($connection, $ticketNumber);
 
             // Update the FastPassStatus in the bookings table
-            $updateQuery = "UPDATE bookings SET FastPassStatus = 'True' WHERE ticketNumber = $ticketNumber";
+            $updateQuery = "UPDATE bookings SET FastPassStatus = 'False' WHERE ticketNumber = $ticketNumber";
 
             if (mysqli_query($connection, $updateQuery)) {
-                echo "<script>alert('Ticket upgraded successfully!'); window.history.go(-1);</script>";
+                echo "<script>alert('Ticket downgraded successfully!'); window.history.go(-1);</script>";
             } else {
                 echo "Error updating ticket: " . mysqli_error($connection);
             }

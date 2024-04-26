@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $transactionType = "Payment";
                 $amount = $totalAmount;
                 $description = "Payment for booking $booking";
-                $sql = "INSERT INTO transactions (TransactionType, Amount, Description, BookingReferenceNumber) VALUES ('$transactionType', '$amount', '$description', '$booking')";
+                $sql = "INSERT INTO transactions (TransactionType, Amount, Description, BookingReferenceNumber, PassengerID) VALUES ('$transactionType', '$amount', '$description', '$booking', '$passengerID')";
                 mysqli_query($connection, $sql);
             }
         }
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p>Select the flights you would like to upgrade:</p>
     <form action="" method="post" onsubmit="return validateForm()">
         <?php
-        $sql = "SELECT * FROM bookings WHERE FastPassStatus = 'False'";
+        $sql = "SELECT * FROM bookings WHERE FastPassStatus = 'False' AND PassengerID = $passengerID";
         $result = mysqli_query($connection, $sql);
         ?>
         <div id="checkboxes">

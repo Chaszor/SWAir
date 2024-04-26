@@ -71,9 +71,18 @@ include('employee_session.php');
                 <label for="ticketNumber">Enter Ticket Number to Upgrade</label>
                 <input type="text" name="ticketNumber" id="ticketNumber" required>
                 <button type="submit">Upgrade</button>
-                
             </form>
         </div>
+        <br>
+        <div class="upgrade-ticket">
+            <h3>Downgrade a Ticket</h3>
+            <form action="employee_ticket_downgrade.php" method="GET">
+                <label for="ticketNumber">Enter Ticket Number to Downgrade</label>
+                <input type="text" name="ticketNumber" id="ticketNumber" required>
+                <button type="submit">Downgrade</button>
+            </form>
+        </div>
+
         <!-- You can customize the profile information based on your database structure -->
     </div>
 </body>
