@@ -11,12 +11,25 @@ function validateCreditCard($creditCardNumber) {
         $digit = $creditCardNumber[$i];
         if ($i % 2 == $parity) {
             $digit *= 2;
-            $digit -= $digit > 9 ? 9 : 0; // Condensed if statement
+            $digit -= $digit > 9 ? 9 : 0;
         }
         $sum += $digit;
     }
 
     return ($sum % 10 == 0);
+}
+
+function validateExpirationDate($expMonth, $expYear) {
+    $currentYear = date('Y');
+    $currentMonth = date('m');
+    $formattedExpiryYear = '20' . substr($expYear, -2); // Assuming the expiry year is provided in two digits
+
+    if ($formattedExpiryYear < $currentYear) {
+        return false;
+    } elseif ($formattedExpiryYear == $currentYear && $expMonth < $currentMonth) {
+        return false;
+    }
+    return true;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $expiryYear = $_POST['expiryYear'];
     $cvv = $_POST['cvv'];
 
-    if (validateCreditCard($cardNumber)) {
+    if (validateCreditCard($cardNumber) && validateExpirationDate($expiryMonth, $expiryYear)) {
         if(isset($_POST['booking']) && is_array($_POST['booking'])) {
             $totalChecked = count($_POST['booking']);
             $totalAmount = 100.00;
@@ -48,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("location: confirmation.php");
         exit(); // Terminating script after header redirect
     } else {
-        echo '<script>alert("Invalid credit card number. Please check your card details and try again.");</script>';
+        echo '<script>alert("Invalid credit card number or expiration date. Please check your card details and try again.");</script>';
     }
 }
 ?>
