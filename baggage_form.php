@@ -55,10 +55,11 @@ if (isset($_GET['PassengerID'])) {
 
 <div class="baggageForm">
     <form action="process_baggage.php" method="post">
+        <h3 align="center">Max weight is 50lbs for online checking</h3>
         <!-- Bag 1 -->
         <h2>Bag 1</h2>
         <label for="bag1Weight">Weight (in pounds):</label>
-        <input type="number" id="bag1Weight" name="bag1Weight" ><br>
+        <input type="number" id="bag1Weight" name="bag1Weight" min=0 max=50><br>
 
         <label for="bag1SpecialRequests">Special Requests:</label>
         <textarea id="bag1SpecialRequests" name="bag1SpecialRequests" rows="4" cols="50"></textarea><br>
@@ -66,7 +67,7 @@ if (isset($_GET['PassengerID'])) {
         <!-- Bag 2 -->
         <h2>Bag 2</h2>
         <label for="bag2Weight">Weight (in pounds):</label>
-        <input type="number" id="bag2Weight" name="bag2Weight" ><br>
+        <input type="number" id="bag2Weight" name="bag2Weight" min=0 max=50 ><br>
 
         <label for="bag2SpecialRequests">Special Requests:</label>
         <textarea id="bag2SpecialRequests" name="bag2SpecialRequests" rows="4" cols="50"></textarea><br>
@@ -74,7 +75,7 @@ if (isset($_GET['PassengerID'])) {
         <!-- Bag 3 -->
         <h2>Bag 3</h2>
         <label for="bag3Weight">Weight (in pounds):</label>
-        <input type="number" id="bag3Weight" name="bag3Weight" ><br>
+        <input type="number" id="bag3Weight" name="bag3Weight" min=0 max=50><br>
         <label for="bag3SpecialRequests">Special Requests:</label>
         <textarea id="bag3SpecialRequests" name="bag3SpecialRequests" rows="4" cols="50"></textarea><br>
         <input type="hidden" id="ticketNumber" name="ticketNumber" value="<?php echo $ticketNumber; ?>">
@@ -83,6 +84,7 @@ if (isset($_GET['PassengerID'])) {
         <!-- Your existing hidden inputs -->
 
         <input type="submit" value="Submit Baggage Information">
+        <br><br>
     </form>
 </div>
 
