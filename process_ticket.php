@@ -5,11 +5,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
     $ticketNumber = $_POST['ticketNumber'];
     $flightNumber = $_POST['flightNumber'];
-    $seatNumber = $_POST['seatNumber']; // Add this line for seat assignment
+    $seatNumber = $_POST['seatNumber']; 
+    $passengerID = $_POST['passengerID']; // Assuming you are capturing passenger ID
 
     // Validate and sanitize the data as needed
 
-    // Connect to the database (replace these values with your database credentials)
+    // Connect to the database (replace these values with your actual database credentials)
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -22,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Prepare and bind statement to check the count of FastPassStatus
-    $stmt = $conn->prepare("SELECT COUNT(*) as total FROM bookings WHERE flightNumber = ? AND FastPassStatus = 'True'");
+    // Prepare and bind statement to check for duplicate flight numbers
+    $stmt = $conn->prepare("SELECT COUNT(*) as count FROM bookings WHERE flightNumber = ?");
     $stmt->bind_param("s", $flightNumber);
 
     // Execute the query
@@ -31,19 +32,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    // Check the total FastPassStatus
-    if ($row['total'] >= 2) {
-        echo "<script>alert('No available bookings'); window.history.go(-1);</script>";
+    // Check if the flight number is already in use
+    if ((int)$row['count'] > 0) {
+        echo "<script>alert('Duplicate flight number detected! Please enter a unique flight number.'); window.history.go(-1);</script>";
     } else {
-        // Insert data into the database
-        $sql = "INSERT INTO bookings (ticketNumber, flightNumber, seatNumber, passengerID, FastPassStatus) VALUES ('$ticketNumber', '$flightNumber', '$seatNumber', '$passengerID', 'False')";
-        if ($conn->query($sql) === TRUE) {
+        // Insert data into the database if no duplicate is found
+        $sql = "INSERT INTO bookings (ticketNumber, flightNumber, seatNumber, passengerID, FastPassStatus) VALUES (?, ?, ?, ?, 'False')";
+        $insert_stmt = $conn->prepare($sql);
+        $insert_stmt->bind_param("ssss", $ticketNumber, $flightNumber, $seatNumber, $passengerID);
+        
+        if ($insert_stmt->execute()) {
             echo "Ticket information successfully stored in the database.";
             header("location: baggage_form.php");
             exit();
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . $insert_stmt->error;
         }
+
+        $insert_stmt->close();
     }
 
     // Close statement and connection
